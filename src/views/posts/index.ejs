@@ -8,7 +8,14 @@
 </head>
 <body>
   <header>
-    <h1>My first node blog</h1>
+    <h1>All my node posts</h1>
   </header>
+  <main>
+    <% posts.forEach((post) => {  %>
+      <p>Titre : <%= post.title %></p>
+      <p>Sujet : <%= post.body %></p>
+      <a href="/posts/show/<%= post.id %>">Voir plus</a>
+    <% }) %>
+  </main>
 </body>
 </html>
