@@ -3,20 +3,28 @@ const postRoutes = express.Router()
 
 import * as postsController from '../controllers/posts'
 
-postRoutes.get('/', (req: Request, res: Response, next: NextFunction) => {
+postRoutes.get('/', async (req: Request, res: Response, next: NextFunction) => {
   postsController.postsIndex(req, res, next)
 })
 
-postRoutes.get('/show/:id', (req: Request, res: Response, next: NextFunction) => {
+postRoutes.get('/show/:id', async (req: Request, res: Response, next: NextFunction) => {
   postsController.postShow(req, res, next)
 })
 
-postRoutes.get('/new', (req: Request, res: Response, next: NextFunction) => {
+postRoutes.get('/new', async (req: Request, res: Response, next: NextFunction) => {
   postsController.postsNew(req, res, next)
 })
 
-postRoutes.post('/new', (req: Request, res: Response, next: NextFunction) => {
+postRoutes.post('/new', async (req: Request, res: Response, next: NextFunction) => {
   postsController.postCreate(req, res, next)
+})
+
+postRoutes.get('/edit/:id', async (req: Request, res: Response, next: NextFunction) => {
+  postsController.postEdit(req, res, next)
+})
+
+postRoutes.post('/edit/:id', async (req: Request, res: Response, next: NextFunction) => {
+  postsController.postUpdate(req, res, next)
 })
 
 export default postRoutes

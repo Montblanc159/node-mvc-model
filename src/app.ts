@@ -4,31 +4,27 @@ import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import "reflect-metadata"
 import {createConnection} from "typeorm"
-// DB
-dotenv.config()
-
-// createConnection().then(connection => {
-// }).catch(error => console.log(error))
-
-// Routes
 import postRoutes from './routes/posts'
 
-export const app = express()
-const port: number = 8080
+createConnection().then( connection => {
 
-app.set('view engine', 'ejs')
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+  const app = express()
+  const port: number = 8080
+  dotenv.config()
 
-app.listen(port, () => {
-  `Now listening on ${port}`
-})
+  app.set('view engine', 'ejs')
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
+  // Routes
+  app.get('/', (req: Request, res: Response, next: NextFunction) => {
+    req
+    next
+    res.render(path.join(__dirname + '/views/home/index.ejs'), { test: "Yeah" })
+  })
 
-app.get('/', (req: Request, res: Response, next: NextFunction) => {
-  req
-  next
-  res.render(path.join(__dirname + '/views/home/index.ejs'), { test: "Yeah" })
-})
+  app.use('/posts', postRoutes)
 
-
-app.use('/posts', postRoutes)
+  app.listen(port, () => {
+    `Now listening on ${port}`
+  })
+}).catch(error => console.log(error))

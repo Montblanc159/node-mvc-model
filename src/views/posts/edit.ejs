@@ -1,0 +1,11 @@
+<form class="" action="" method="post">
+  <input type="hidden" name="id" value="<%= post.id %>">
+  <label for="title">Titre</label>
+  <input type="text" id="title" name="title" value="<%= post.title %>">
+  <label for="body">Texte</label>
+  <textarea name="body" id="body" rows="8" cols="80"><%= post.body %></textarea>
+
+  <label for="published">Publier</label>
+  <input type="checkbox" title="published" name="published" value="<%= post.published %>">
+  <input type="submit" name="submit" value="submit">
+</form>
